@@ -2,24 +2,7 @@ import { produce } from "immer";
 import { create } from "zustand";
 import { axiosInstance } from "../../utilities";
 import { getSelectedIdsString } from "@/constants/helpers";
-
-interface Movie {
-  id: number;
-  title: string;
-  release_date: number;
-  poster_path: string;
-  // Add more properties as needed
-}
-
-interface Movies {
-  [year: number | string]: Movie[];
-}
-
-interface Categories {
-  id: string;
-  name: string;
-  isSelected: boolean;
-}
+import { Categories, Movies } from "../movies.types";
 
 interface MovieStore {
   loading: boolean;
@@ -27,11 +10,13 @@ interface MovieStore {
   movies: Movies;
   oldestYear: number;
   newestYear: number;
+  searchText?: string;
   fetchMovies: (year: number) => void;
   setCategory: (id: string, value: boolean) => void;
   fetchCategories: () => void;
   setOldestYear: (value: number) => void;
   setNewestYear: (value: number) => void;
+  setSearchText: (value: string) => void;
 }
 
 const defaultCategory = {
@@ -46,6 +31,7 @@ const initialState = {
   oldestYear: 2012,
   newestYear: 2012,
   movies: {},
+  searchText: "",
 };
 
 const store = (set: (arg0: any) => void, get: any) => {
@@ -151,6 +137,13 @@ const store = (set: (arg0: any) => void, get: any) => {
       set(
         produce((draft: any) => {
           draft.newestYear = value;
+        })
+      );
+    },
+    setSearchText: (value: string) => {
+      set(
+        produce((draft: any) => {
+          draft.searchText = value;
         })
       );
     },

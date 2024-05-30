@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResponsiveCardContainer Component renders correctly with given children 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "justifyContent": "space-between",
+      "padding": 10,
+    }
+  }
+>
+  <View>
+    <View>
+      <Text>
+        Child 1
+      </Text>
+    </View>
+    <View>
+      <Text>
+        Child 2
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;

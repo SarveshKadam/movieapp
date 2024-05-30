@@ -1,20 +1,17 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
-
+import React from "react";
+import { StyleSheet, ScrollView } from "react-native";
 
 const ResponsiveCardContainer = ({ children }: any) => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {children}
-    </ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>{children}</ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     padding: 10,
   },
 });

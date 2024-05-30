@@ -1,21 +1,29 @@
 import { useEffect, type PropsWithChildren, type ReactElement } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
 
-import { ThemedView } from "@/components/ThemedView";
 import { useMovieStore } from "@/store";
 import HorizontalButtonScroll from "./HorizontalButtonScroll";
-
-const HEADER_HEIGHT = 150;
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = PropsWithChildren<{
   headerImage?: ReactElement;
 }>;
 
-export default function AppWrapper({ children, headerImage }: Props) {
-  const { categories, setCategory, fetchCategories } = useMovieStore();
+export default function AppWrapper({ children }: Props) {
+  const {
+    categories,
+    setCategory,
+    fetchCategories,
+    searchText,
+    setSearchText,
+  } = useMovieStore();
 
   const handlePressButton = (id: string, value: boolean) => {
     setCategory(id, value);
+  };
+
+  const clearSearchText = () => {
+    setSearchText("");
   };
 
   useEffect(() => {
@@ -23,9 +31,24 @@ export default function AppWrapper({ children, headerImage }: Props) {
   }, []);
 
   return (
-    <ThemedView style={styles.container}>
+    <View style={styles.container}>
       <View style={[styles.header]}>
-        <View>{headerImage}</View>
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Search"
+            value={searchText}
+            onChangeText={setSearchText}
+          />
+          {!!searchText?.length && (
+            <TouchableOpacity
+              onPress={clearSearchText}
+              style={styles.clearButton}
+            >
+              <Ionicons name="close-circle-outline" size={24} color="white" />
+            </TouchableOpacity>
+          )}
+        </View>
         <View style={styles.categorySection}>
           <HorizontalButtonScroll
             buttons={categories}
@@ -34,7 +57,7 @@ export default function AppWrapper({ children, headerImage }: Props) {
         </View>
       </View>
       <View style={styles.content}>{children}</View>
-    </ThemedView>
+    </View>
   );
 }
 
@@ -45,7 +68,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   header: {
-    height: 154,
+    height: 124,
     overflow: "hidden",
     position: "static",
   },
@@ -53,11 +76,30 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     gap: 16,
-    // overflow: "hidden",
     height: "100%",
   },
   categorySection: {
     position: "absolute",
-    top: 100,
+    top: 60,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    height: 40,
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    color: "#ccc",
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    height: '100%',
+  },
+  clearButton: {
+    padding: 5,
   },
 });

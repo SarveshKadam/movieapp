@@ -1,7 +1,8 @@
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
-
+const numColumns = windowWidth >= 540 ? 3 : 2;
+const itemWidth = windowWidth / numColumns - 2 * 16
 interface CardProps {
   title: string;
   release_date: string | number;
@@ -10,7 +11,11 @@ interface CardProps {
 
 const PREFIX = "https://image.tmdb.org/t/p/w500/";
 
-const Card: React.FC<CardProps> = ({ title, release_date, imageUri }) => {
+const Card: React.FC<CardProps> = ({
+  title,
+  release_date,
+  imageUri,
+}) => {
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
@@ -20,7 +25,6 @@ const Card: React.FC<CardProps> = ({ title, release_date, imageUri }) => {
           resizeMode={"contain"}
         />
       </View>
-      {/* <Image source={{ uri: PREFIX + imageUri }} resizeMode={'cover'} style={styles.image} /> */}
       <View style={styles.overlay}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{release_date}</Text>
@@ -31,7 +35,7 @@ const Card: React.FC<CardProps> = ({ title, release_date, imageUri }) => {
 
 const styles = StyleSheet.create({
   card: {
-    width: (windowWidth - 60) / 2, // Assuming 2 cards per row, with some padding
+    width: itemWidth,
     height: 250,
     backgroundColor: "white",
     marginVertical: 10,
@@ -39,8 +43,8 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "center",
     alignItems: "center",
-    elevation: 5, // for shadow
-    flex: 1/2,
+    elevation: 5,
+    flex: 1 / numColumns,
   },
   imageContainer: { display: "flex" },
   image: {

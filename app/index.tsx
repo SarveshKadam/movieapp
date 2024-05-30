@@ -5,24 +5,7 @@ import Movies from "@/components/Movies";
 
 export default function HomeScreen() {
   return (
-    <AppWrapper
-      headerImage={
-        <Image
-          source={require("@/assets/images/app-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      {/* <ResponsiveCardContainer>
-        {data.map((item) => (
-          <Card
-            title={`Title1 ${item}`}
-            imageUri="https://image.tmdb.org/t/p/w500/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg"
-            description={`Description ${item}`}
-            key={item}
-          />
-        ))}
-      </ResponsiveCardContainer> */}
+    <AppWrapper>
       <Movies />
     </AppWrapper>
   );

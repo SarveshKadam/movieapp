@@ -1,19 +1,14 @@
+import { getFilteredMovies } from "@/constants/helpers";
 import { useMovieStore } from "@/store";
-import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import Card from "./Card";
-
-interface Movie {
-  id: number;
-  title: string;
-  release_date: number;
-  poster_path: string;
-  // Add more properties as needed
-}
-
-interface Movies {
-  [year: number | string]: Movie[];
-}
 
 const defaultYear = 2012;
 const Movies = () => {
@@ -24,10 +19,9 @@ const Movies = () => {
     newestYear,
     setOldestYear,
     setNewestYear,
+    searchText = "",
   } = useMovieStore();
-  useEffect(() => {
-    fetchMovies(defaultYear);
-  }, []);
+  const { width } = useWindowDimensions();
 
   const handleEndReached = () => {
     fetchMovies(newestYear + 1);
@@ -38,11 +32,17 @@ const Movies = () => {
     fetchMovies(oldestYear - 1);
     setOldestYear(oldestYear - 1);
   };
+
+  useEffect(() => {
+    fetchMovies(defaultYear);
+  }, []);
+  const filteredMovies = getFilteredMovies(searchText, movies);
   return (
     <View style={styles.container}>
       <FlatList
-        data={Object.entries(movies)}
+        data={Object.entries(filteredMovies)}
         renderItem={({ item }) => {
+          const numColumns = width >= 540 ? 3 : 2;
           return (
             <View>
               <Text style={styles.yearTitle}>{item[0]}</Text>
@@ -50,7 +50,7 @@ const Movies = () => {
                 data={item[1]}
                 columnWrapperStyle={{ columnGap: 20, margin: 10 }}
                 contentContainerStyle={styles.cardContainer}
-                numColumns={2}
+                numColumns={numColumns}
                 renderItem={({ item }) => {
                   return (
                     <Card
@@ -61,6 +61,7 @@ const Movies = () => {
                     />
                   );
                 }}
+                key={width >= 540 ? "h" : "v"}
                 keyExtractor={(item) => item.id.toString()}
               />
             </View>
@@ -78,7 +79,8 @@ const Movies = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   yearSection: {
     marginBottom: 20,
