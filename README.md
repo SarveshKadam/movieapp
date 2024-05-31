@@ -1,6 +1,6 @@
 # Welcome to your Movie List app 👋
 
-An app that provides movie information by displaying a list of films sourced from The Movie Database (TMDb) API. It features top movies for each year, allows users to filter by genre, and offers smooth scrolling.
+An app that provides movie information by displaying a list of films sourced from The Movie Database (TMDb) API. It features the top movies for each year, allows users to filter by genre, and offers smooth scrolling.
 Built with React Native. 
 
 ## Get started
@@ -11,26 +11,26 @@ Built with React Native.
    npm install
    ```
 
-2. Download the expo app on your mobile
+2. Download the Expo app on your mobile
    Access the below link, select the device which you have android or ios, scan the QR code and download the app
 - [Expo Go](https://docs.expo.dev/get-started/set-up-your-environment/), a limited sandbox for trying out app development with Expo
 
 3. Start the app
 
-   **NOTE: Please make sure you laptop / PC and Mobile device is connected to same wifi / network**
+   **NOTE: Please make sure your laptop / PC and Mobile device is connected to the same wifi/network**
 
    ```bash
     npx expo start
    ```
-   After running the above command , a QR code will be generated. Please scan the QR code and the app will start running on your device
+   After running the above command, a QR code will be generated. Please scan the QR code and the app will start running on your device
 
 ## Features List
 
 ### Things covered
-- [x] Display a list of movies from TMDb API
+- [x] Display a list of movies from the TMDb API
 - [x] Filter movies by genre
 - [x] Smooth scrolling
-- [x] Fetching subsequent year movies on scrolling to the bottom
+- [x] Fetching subsequent year movies by scrolling to the bottom
 - [x] Fetching previous year movies on refresh
 - [x] Search Functionality with scrolling and fetching new movies 
 - [x] Component Unit Test cases
@@ -53,11 +53,4 @@ Built with React Native.
 - [Expo](https://expo.dev/): A framework and platform for universal React applications.
 - [Jest](https://jestjs.io/): A delightful JavaScript testing framework with a focus on simplicity.
 - [react-test-renderer](https://reactjs.org/docs/test-renderer.html): A package that provides a React renderer that can be used to render React components to pure JavaScript objects.
-
-## Reference
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
