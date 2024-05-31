@@ -1,6 +1,7 @@
-# Welcome to your Expo app 👋
+# Welcome to your Movie List app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+An app that provides movie information by displaying a list of films sourced from The Movie Database (TMDb) API. It features top movies for each year, allows users to filter by genre, and offers smooth scrolling.
+Built with React Native. 
 
 ## Get started
 
@@ -10,41 +11,53 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Download the expo app on your mobile
+   Access the below link, select the device which you have android or ios, scan the QR code and download the app
+- [Expo Go](https://docs.expo.dev/get-started/set-up-your-environment/), a limited sandbox for trying out app development with Expo
+
+3. Start the app
+
+   **NOTE: Please make sure you laptop / PC and Mobile device is connected to same wifi / network**
 
    ```bash
     npx expo start
    ```
+   After running the above command , a QR code will be generated. Please scan the QR code and the app will start running on your device
 
-In the output, you'll find options to open the app in a
+## Features List
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Things covered
+- [x] Display a list of movies from TMDb API
+- [x] Filter movies by genre
+- [x] Smooth scrolling
+- [x] Fetching subsequent year movies on scrolling to the bottom
+- [x] Fetching previous year movies on refresh
+- [x] Search Functionality with scrolling and fetching new movies 
+- [x] Component Unit Test cases
+- [x] Centralised Store using Zustand
+- [x] Usage of TypeScript for enhanced type safety and code quality.
+- [x] Implementation of this project in React Native
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Things which can be taken
+- [ ] More Test Coverage, in terms of component and store testing
+- [ ] Movie Detail Page providing more information of the movie
+- [ ] Advanced search functionality
+- [ ] Multiple Device compatibility testing
 
-## Get a fresh project
+## Technologies Used
 
-When you're ready, run:
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+- [React Native](https://reactnative.dev/): A framework for building native applications using React.
+- [Zustand](https://github.com/pmndrs/zustand): A small, fast and scaleable state management library for React.
+- [Axios](https://axios-http.com/): A promise-based HTTP client for making HTTP requests in the browser and Node.js.
+- [Expo](https://expo.dev/): A framework and platform for universal React applications.
+- [Jest](https://jestjs.io/): A delightful JavaScript testing framework with a focus on simplicity.
+- [react-test-renderer](https://reactjs.org/docs/test-renderer.html): A package that provides a React renderer that can be used to render React components to pure JavaScript objects.
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
+## Reference
 
 To learn more about developing your project with Expo, look at the following resources:
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
