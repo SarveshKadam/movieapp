@@ -1,7 +1,11 @@
-import React from "react";
+import { ReactNode } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 
-const ResponsiveCardContainer = ({ children }: any) => {
+interface ResponsiveCardContainerProps {
+  children: ReactNode;
+}
+
+const ResponsiveCardContainer = ({ children }: ResponsiveCardContainerProps) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>{children}</ScrollView>
   );

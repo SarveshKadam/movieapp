@@ -1,34 +1,31 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View
+} from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 const numColumns = windowWidth >= 540 ? 3 : 2;
-const itemWidth = windowWidth / numColumns - 2 * 16
+const itemWidth = windowWidth / numColumns - 2 * 16;
 interface CardProps {
   title: string;
-  release_date: string | number;
+  vote_average: number;
   imageUri: string;
 }
 
 const PREFIX = "https://image.tmdb.org/t/p/w500/";
 
-const Card: React.FC<CardProps> = ({
-  title,
-  release_date,
-  imageUri,
-}) => {
+const Card: React.FC<CardProps> = ({ title, vote_average, imageUri }) => {
   return (
     <View style={styles.card}>
-      <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={{ uri: PREFIX + imageUri }}
-          resizeMode={"contain"}
-        />
-      </View>
-      <View style={styles.overlay}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{release_date}</Text>
-      </View>
+      <ImageBackground style={styles.image} source={{ uri: PREFIX + imageUri }}>
+        <View style={styles.overlay}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.ratings}>⭐ {vote_average?.toFixed(1)}</Text>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -40,18 +37,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginVertical: 10,
     borderRadius: 5,
-    padding: 10,
+    overflow: "hidden",
     justifyContent: "center",
     alignItems: "center",
     elevation: 5,
     flex: 1 / numColumns,
   },
-  imageContainer: { display: "flex" },
   image: {
+    flex: 1,
     width: "100%",
-    height: undefined,
-    aspectRatio: 1,
-    resizeMode: "contain",
+    height: "100%",
+    resizeMode: "cover",
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -65,8 +61,8 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     marginBottom: 5,
   },
-  description: {
-    fontSize: 10,
+  ratings: {
+    fontSize: 12,
     color: "white",
     fontWeight: 600,
   },

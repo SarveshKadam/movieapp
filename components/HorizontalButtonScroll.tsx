@@ -1,4 +1,3 @@
-import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 interface Props {

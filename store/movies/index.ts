@@ -50,7 +50,7 @@ const store = (set: (arg0: any) => void, get: any) => {
         });
         const data = await response.data;
         set(
-          produce((draft: any) => {
+          produce((draft: MovieStore) => {
             draft.movies = { ...get().movies, [year]: data?.results };
           })
         );
@@ -61,7 +61,7 @@ const store = (set: (arg0: any) => void, get: any) => {
     setCategory: (id: string, value: boolean) => {
       if (id === defaultCategory.id && !value) return;
       set(
-        produce((draft: any) => {
+        produce((draft: MovieStore) => {
           if (id === defaultCategory.id && value) {
             // If all is selected, then deselect other genre
             draft.categories.forEach(
@@ -77,7 +77,7 @@ const store = (set: (arg0: any) => void, get: any) => {
             let isSelectedAvailable = true;
             if (!value) {
               isSelectedAvailable = draft.categories.some(
-                (item: { isSelected: any; id: string }) =>
+                (item: { isSelected: boolean; id: string }) =>
                   item.isSelected && item.id !== id
               );
             }
@@ -98,7 +98,7 @@ const store = (set: (arg0: any) => void, get: any) => {
         })
       );
       set(
-        produce((draft: any) => {
+        produce((draft: MovieStore) => {
           draft.movies = {};
         })
       );
@@ -111,10 +111,10 @@ const store = (set: (arg0: any) => void, get: any) => {
         const response = await axiosInstance.get("/genre/movie/list");
         if (response.data.genres.length) {
           set(
-            produce((draft: any) => {
+            produce((draft: MovieStore) => {
               draft.categories = [
                 defaultCategory,
-                ...response.data.genres.map((item: any) => ({
+                ...response.data.genres.map((item: Categories) => ({
                   ...item,
                   isSelected: false,
                 })),
@@ -128,21 +128,21 @@ const store = (set: (arg0: any) => void, get: any) => {
     },
     setOldestYear: (value: number) => {
       set(
-        produce((draft: any) => {
+        produce((draft: MovieStore) => {
           draft.oldestYear = value;
         })
       );
     },
     setNewestYear: (value: number) => {
       set(
-        produce((draft: any) => {
+        produce((draft: MovieStore) => {
           draft.newestYear = value;
         })
       );
     },
     setSearchText: (value: string) => {
       set(
-        produce((draft: any) => {
+        produce((draft: MovieStore) => {
           draft.searchText = value;
         })
       );

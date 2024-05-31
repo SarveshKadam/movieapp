@@ -5,7 +5,7 @@ import Card from '../Card';
 describe('Card Component', () => {
   const props = {
     title: 'Sample Title',
-    release_date: '2024-05-25',
+    vote_average: 7.58,
     imageUri: 'sample_image.jpg',
   };
 
@@ -19,7 +19,7 @@ describe('Card Component', () => {
     const instance = tree.root;
 
     const title = instance.findByProps({ children: props.title });
-    const releaseDate = instance.findByProps({ children: props.release_date });
+    const releaseDate = instance.findByProps({ children: props.vote_average });
 
     expect(title).toBeTruthy();
     expect(releaseDate).toBeTruthy();

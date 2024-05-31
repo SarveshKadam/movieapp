@@ -1,9 +1,8 @@
 import { useEffect, type PropsWithChildren, type ReactElement } from "react";
 import { StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
-
-import { useMovieStore } from "@/store";
-import HorizontalButtonScroll from "./HorizontalButtonScroll";
 import { Ionicons } from "@expo/vector-icons";
+import HorizontalButtonScroll from "./HorizontalButtonScroll";
+import { useMovieStore } from "@/store";
 
 type Props = PropsWithChildren<{
   headerImage?: ReactElement;

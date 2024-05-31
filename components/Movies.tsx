@@ -1,6 +1,5 @@
-import { getFilteredMovies } from "@/constants/helpers";
-import { useMovieStore } from "@/store";
-import React, { useEffect } from "react";
+
+import { useEffect } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -9,6 +8,8 @@ import {
   View,
 } from "react-native";
 import Card from "./Card";
+import { getFilteredMovies } from "@/constants/helpers";
+import { useMovieStore } from "@/store";
 
 const defaultYear = 2012;
 const Movies = () => {
@@ -56,7 +57,7 @@ const Movies = () => {
                     <Card
                       key={item.id}
                       title={item.title}
-                      release_date={item.release_date}
+                      vote_average={item.vote_average}
                       imageUri={item.poster_path}
                     />
                   );
